@@ -41,7 +41,7 @@ void selectInputFile(char *filename) {
     int count = 0;
 
     // Open the "input_problems" directory
-    if ((dir = opendir("../input_problems")) != NULL) {
+    if ((dir = opendir("input_problems")) != NULL) {
         // List files in the directory
         printf("Select an input file from the \"input_problems\" folder:\n\n");
         while ((ent = readdir(dir)) != NULL) {
@@ -70,7 +70,7 @@ void selectInputFile(char *filename) {
 
         // Find the selected file by number
         count = 0;
-        if ((dir = opendir("../input_problems")) != NULL) {
+        if ((dir = opendir("input_problems")) != NULL) {
             while ((ent = readdir(dir)) != NULL) {
                 // Ignore directories and special entries
                 if (strcmp(ent->d_name, ".") == 0 || strcmp(ent->d_name, "..") == 0) {
@@ -80,7 +80,7 @@ void selectInputFile(char *filename) {
                 // Check if the entry is a regular file
                 struct stat file_stat;
                 char filepath[MAX_FILENAME_LENGTH];
-                snprintf(filepath, MAX_FILENAME_LENGTH, "../input_problems/%s", ent->d_name);
+                snprintf(filepath, MAX_FILENAME_LENGTH, "input_problems/%s", ent->d_name);
                 if (stat(filepath, &file_stat) == 0 && S_ISREG(file_stat.st_mode)) {
                     count++;
                     if (count == selectedFile) {
