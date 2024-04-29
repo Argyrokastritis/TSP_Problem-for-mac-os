@@ -16,6 +16,7 @@
 #define MAX_FILENAME_LENGTH 30
 
 #define MAX_NODES 1100
+//#define MAX_FILES 1000  // Adjust this value as needed
 
 struct Node {
     int id;
@@ -97,6 +98,84 @@ void selectInputFile(char *filename) {
         exit(1);
     }
 }
+/*// Function to compare two strings for qsort
+int compareStrings(const void *a, const void *b) {
+    return strcmp(*(const char **)a, *(const char **)b);
+}
+
+void selectInputFile(char *filename) {
+    DIR *dir;
+    struct dirent *ent;
+    int count = 0;
+
+    // Open the "input_problems" directory
+    if ((dir = opendir("input_problems")) != NULL) {
+        // Create an array to hold the filenames
+        char *filenames[MAX_FILES];
+        while ((ent = readdir(dir)) != NULL) {
+            // Ignore directories and special entries
+            if (strcmp(ent->d_name, ".") == 0 || strcmp(ent->d_name, "..") == 0) {
+                continue;
+            }
+
+            // Check if the entry is a regular file
+            struct stat file_stat;
+            char filepath[MAX_FILENAME_LENGTH];
+            snprintf(filepath, MAX_FILENAME_LENGTH, "input_problems/%s", ent->d_name);
+            if (stat(filepath, &file_stat) == 0 && S_ISREG(file_stat.st_mode)) {
+                // Add the filename to the array
+                filenames[count] = malloc(strlen(ent->d_name) + 1);
+                strcpy(filenames[count], ent->d_name);
+                count++;
+            }
+        }
+        closedir(dir);
+
+        // Sort the filenames
+        qsort(filenames, count, sizeof(char *), compareStrings);
+
+        // Print the sorted filenames
+        printf("Select an input file from the \"input_problems\" folder:\n\n");
+        for (int i = 0; i < count; i++) {
+            printf("  %d. %s\n", i + 1, filenames[i]);
+            free(filenames[i]);
+        }
+
+        // Prompt the user to select a file by number
+        int selectedFile;
+        printf("Insert the number of the file you want to select and press Enter: ");
+        scanf("%d", &selectedFile);
+        printf("\n\n");
+
+        // Reopen the directory to find the selected file by number
+        if ((dir = opendir("input_problems")) != NULL) {
+            count = 0;
+            while ((ent = readdir(dir)) != NULL) {
+                // Ignore directories and special entries
+                if (strcmp(ent->d_name, ".") == 0 || strcmp(ent->d_name, "..") == 0) {
+                    continue;
+                }
+
+                // Check if the entry is a regular file
+                struct stat file_stat;
+                char filepath[MAX_FILENAME_LENGTH];
+                snprintf(filepath, MAX_FILENAME_LENGTH, "input_problems/%s", ent->d_name);
+                if (stat(filepath, &file_stat) == 0 && S_ISREG(file_stat.st_mode)) {
+                    count++;
+                    if (count == selectedFile) {
+                        strncpy(filename, filepath, MAX_FILENAME_LENGTH);
+                        closedir(dir);
+                        return;
+                    }
+                }
+            }
+            closedir(dir);
+        }
+    } else {
+        printf("Failed to open the \"input_problems\" folder.\n");
+        exit(1);
+    }
+}*/
 
 void readInput(struct Graph *graph, const char *filename) {
     FILE *file = fopen(filename, "r");
