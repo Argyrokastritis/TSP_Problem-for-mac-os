@@ -149,9 +149,14 @@ void writeOutput(struct Graph *graph, int *tour, double tourLength, double execu
     inputFileBaseName[length] = '\0'; // Null-terminate the string
     // Create the "results" folder if it doesn't exist
     struct stat st = {0};
-    if (stat(outputFolder, &st) == -1) {
+    /*if (stat(outputFolder, &st) == -1) {
         //mkdir(outputFolder, 0700);
         mkdir(outputFolder);
+    }*/
+    if (stat(outputFolder, &st) == -1) {
+        char command[256];
+        sprintf(command, "mkdir %s", outputFolder);
+        system(command);
     }
 
     // Build the output filename
