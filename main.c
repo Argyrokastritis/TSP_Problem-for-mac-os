@@ -37,6 +37,7 @@ int main() {
     printf("  4. Simulated Annealing on 2-Opt Algorithm (SA2OPT)\n");
     printf("Insert your choice (1, 2, 3 or 4) and press Enter: ");
     scanf("%d", &choice);
+    printf("\n---- Presentation of Distances Total Tour Length and execution times  -----\n\n");
 
     switch (choice) {
         case 1:
