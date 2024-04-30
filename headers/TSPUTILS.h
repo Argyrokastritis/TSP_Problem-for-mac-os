@@ -228,16 +228,13 @@ void writeOutput(struct Graph *graph, int *tour, double tourLength, double execu
     inputFileBaseName[length] = '\0'; // Null-terminate the string
     // Create the "results" folder if it doesn't exist
     struct stat st = {0};
-    /*if (stat(outputFolder, &st) == -1) {
-        //mkdir(outputFolder, 0700);
-        mkdir(outputFolder);
-    }*/
     if (stat(outputFolder, &st) == -1) {
+        //mkdir(outputFolder, 0700);
+        //mkdir(outputFolder);
         char command[256];
         sprintf(command, "mkdir %s", outputFolder);
         system(command);
     }
-
     // Build the output filename
     char outputFilename[100];  // Adjust the size as needed
     snprintf(outputFilename, sizeof(outputFilename), "%s/%s_%s_results.txt", outputFolder, algorithmName, inputFileBaseName);
