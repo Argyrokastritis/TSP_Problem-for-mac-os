@@ -1,0 +1,21 @@
+--- LK algorithm results for the problem rng5.tsp ---
+
+Node_ID    X-coo        Y-coo
+1         243.000000   200.000000
+2         117.000000   83.000000
+3         44.000000   56.000000
+4         152.000000   132.000000
+5         180.000000   191.000000
+
+Size of tour: 5
+MSTlen: 627.408204
+
+Number of unique elements: 5
+
+---Final Tour---
+2 5 4 1 3 2
+
+Final Tour Length: 627.408204
+
+---Execution Time---
+0.000002 seconds
